@@ -3,11 +3,10 @@
   <title>Simple Calculator</title>
 </head>
 <body>
-  <div>
-    <div class="calculator">
-      <input type="text" id="display" disabled>
+  <div class="calculator">
+      <input type="text" id="eshika" disabled>
       <div class="buttons">
-        <button onclick="clearDisplay()">C</button>
+        <button onclick="clearDisplay()">AC</button>
         <button onclick="appendValue('/')">/</button>
         <button onclick="appendValue('*')">*</button>
         <button onclick="deleteLast()">⌫</button><br>
@@ -31,6 +30,29 @@
         <button onclick="appendValue('.')">.</button>
       </div>
     </div>
-  </div>
+  <script>
+    const display = document.getElementById('eshika');
+
+    function appendValue(value) {
+      display.value += value;
+    }
+
+    function clearDisplay() {
+      display.value = '';
+    }
+
+    function deleteLast() {
+      display.value = display.value.slice(0, -1);
+    }
+
+    function calculateResult() {
+      try {
+        display.value = eval(display.value);
+      } catch (e) {
+        alert('Invalid Expression');
+      }
+    }
+  </script>
+
 </body>
 </html>
