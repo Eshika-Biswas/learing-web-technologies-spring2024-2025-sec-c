@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Email Validation</title>
+  <script>
+    function checkEmail(event) {
+      event.preventDefault(); // Prevent form from submitting
+
+      let email = document.getElementById("email").value.trim();
+      let error = document.getElementById("error");
+      error.textContent = ""; // Clear any previous message
+
+      // Check 1: Not empty
+      if (email === "") {
+        error.textContent = "Please enter your email.";
+        return;
+      }
+
+      // Check 2: Valid email format
+      let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      if (!emailPattern.test(email)) {
+        error.textContent = "Please enter a valid email address (e.g. name@example.com).";
+        return;
+      }
+
+      // If everything is okay
+      alert("Email is valid!");
+    }
+  </script>
+</head>
+<body>
+  <h2>Email</h2>
+  <form onsubmit="checkEmail(event)">
+    <input type="text" id="email" placeholder="sample@example.com">
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>
