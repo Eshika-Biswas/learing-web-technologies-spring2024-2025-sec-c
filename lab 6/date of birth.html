@@ -1,0 +1,48 @@
+<html>
+<head>
+  <title>Date of Birth Validation</title>
+  <script>
+    function checkDOB(event) {
+      event.preventDefault(); 
+
+      let dob = document.getElementById("dob").value;
+      let error = document.getElementById("error");
+      error.textContent = "";
+
+      if (!dob) {
+        error.textContent = "Please enter your date of birth.";
+        return;
+      }
+
+      let dobDate = new Date(dob);
+      let today = new Date();
+
+      if (dobDate >= today) {
+        error.textContent = "Date of birth must be in the past.";
+        return;
+      }
+
+    
+      let age = today.getFullYear() - dobDate.getFullYear();
+      let m = today.getMonth() - dobDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < dobDate.getDate())) {
+        age--;
+      }
+
+      if (age < 18) {
+        error.textContent = "You must be at least 18 years old.";
+        return;
+      }
+
+      alert("Date of birth is valid!");
+    }
+  </script>
+</head>
+<body>
+  <h2>Date of Birth</h2>
+  <form onsubmit="checkDOB(event)">
+    <input type="date" id="dob">
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>
