@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gender Selection</title>
+  <script>
+    function checkGender(event) {
+      event.preventDefault(); 
+
+      let genderOptions = document.getElementsByName("gender");
+      let error = document.getElementById("error");
+      error.textContent = ""; 
+
+      
+      let selected = false;
+      for (let i = 0; i < genderOptions.length; i++) {
+        if (genderOptions[i].checked) {
+          selected = true;
+          break;
+        }
+      }
+
+      if (!selected) {
+        error.textContent = "Please select your gender.";
+        return;
+      }
+
+      alert("Gender selected successfully!");
+    }
+  </script>
+</head>
+<body>
+  <h2>Gender</h2>
+  <form onsubmit="checkGender(event)">
+    <fieldset>
+      <legend>Gender</legend>
+      <label><input type="radio" name="gender" value="male"> Male</label>
+      <label><input type="radio" name="gender" value="female"> Female</label>
+      <label><input type="radio" name="gender" value="other"> Other</label>
+    </fieldset>
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>

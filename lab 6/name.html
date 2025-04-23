@@ -1,16 +1,15 @@
-<!DOCTYPE html>
 <html>
 <head>
   <title>Simple Name Validation</title>
   <script>
     function checkName(event) {
-      event.preventDefault(); // Stop form from submitting
+      event.preventDefault(); 
 
       let name = document.getElementById("name").value.trim();
       let error = document.getElementById("error");
-      error.textContent = ""; // Clear old message
+      error.textContent = ""; 
 
-      // Check 1: Not empty
+      
       if (name === "") {
         error.textContent = "Please enter your name.";
         return;
@@ -22,20 +21,20 @@
         return;
       }
 
-      // Check 3: Allowed characters only
+      
       if (!/^[a-zA-Z .-]+$/.test(name)) {
         error.textContent = "Only letters, dot (.) and dash (-) are allowed.";
         return;
       }
 
-      // Check 4: At least two words
+      
       let words = name.split(" ");
       if (words.length < 2) {
         error.textContent = "Enter at least two words.";
         return;
       }
 
-      // If all checks passed
+      
       alert("Name is valid!");
     }
   </script>
