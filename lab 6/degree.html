@@ -1,0 +1,33 @@
+<html>
+<head>
+  <title>Degree Validation</title>
+  <script>
+    function checkDegree(event) {
+      event.preventDefault(); 
+
+      const degrees = document.getElementsByName("degree");
+      const error = document.getElementById("error");
+      error.textContent = "";
+
+      let selected = false;
+
+      for (let i = 0; i < degrees.length; i++) {
+        if (degrees[i].checked) {
+          selected = true;
+          break;
+        }
+      }
+
+      if (!selected) {
+        error.textContent = "Please select your degree (SSC, HSC, or BSC).";
+        return;
+      }
+
+      alert("Degree selected successfully!");
+    }
+  </script>
+</head>
+<body>
+  <h2>Degree</h2>
+  <form onsubmit="checkDegree(event)">
+    <label><input type="

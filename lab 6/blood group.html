@@ -1,0 +1,39 @@
+<html>
+<head>
+  <title>Blood Group Validation</title>
+  <script>
+    function checkBloodGroup(event) {
+      event.preventDefault(); 
+
+      let bloodGroup = document.getElementById("bloodGroup").value;
+      let error = document.getElementById("error");
+      error.textContent = "";
+
+      if (bloodGroup === "") {
+        error.textContent = "Please select your blood group.";
+        return;
+      }
+
+      alert("Blood group selected: " + bloodGroup);
+    }
+  </script>
+</head>
+<body>
+  <h2>Blood Group</h2>
+  <form onsubmit="checkBloodGroup(event)">
+    <select id="bloodGroup">
+      <option value="">--Select Blood Group--</option>
+      <option value="A+">A+</option>
+      <option value="A-">A−</option>
+      <option value="B+">B+</option>
+      <option value="B-">B−</option>
+      <option value="AB+">AB+</option>
+      <option value="AB-">AB−</option>
+      <option value="O+">O+</option>
+      <option value="O-">O−</option>
+    </select>
+    <br><br>
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>
