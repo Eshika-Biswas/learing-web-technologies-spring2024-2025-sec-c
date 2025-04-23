@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Name Validation</title>
+  <script>
+    function checkName(event) {
+      event.preventDefault(); // Stop form from submitting
+
+      let name = document.getElementById("name").value.trim();
+      let error = document.getElementById("error");
+      error.textContent = ""; // Clear old message
+
+      // Check 1: Not empty
+      if (name === "") {
+        error.textContent = "Please enter your name.";
+        return;
+      }
+
+      // Check 2: Must start with a letter
+      if (!/^[a-zA-Z]/.test(name)) {
+        error.textContent = "Name must start with a letter.";
+        return;
+      }
+
+      // Check 3: Allowed characters only
+      if (!/^[a-zA-Z .-]+$/.test(name)) {
+        error.textContent = "Only letters, dot (.) and dash (-) are allowed.";
+        return;
+      }
+
+      // Check 4: At least two words
+      let words = name.split(" ");
+      if (words.length < 2) {
+        error.textContent = "Enter at least two words.";
+        return;
+      }
+
+      // If all checks passed
+      alert("Name is valid!");
+    }
+  </script>
+</head>
+<body>
+  <h2>Enter Your Name</h2>
+  <form onsubmit="checkName(event)">
+    <input type="text" id="name" placeholder="First Last">
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>
