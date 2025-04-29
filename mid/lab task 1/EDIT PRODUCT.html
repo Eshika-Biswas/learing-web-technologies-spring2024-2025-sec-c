@@ -1,0 +1,55 @@
+<html>
+<head>
+    <title>Edit Product</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 300px;
+            padding: 15px;
+            border: 1px solid #000;
+            margin: 50px auto;
+        }
+        .container h3 {
+            margin-top: 0;
+        }
+        .container label, .container input {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .container input[type="text"], .container input[type="checkbox"] {
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+        .container button {
+            background-color: #ccc;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+        }
+        .container button:hover {
+            background-color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>EDIT PRODUCT</h3>
+        <label>Name
+            <input type="text" name="name" value="HTC">
+        </label>
+        <label>Buying Price
+            <input type="text" name="buying_price" value="34000">
+        </label>
+        <label>Selling Price
+            <input type="text" name="selling_price" value="37000">
+        </label>
+        <label>
+            <input type="checkbox" name="display" checked> Display
+        </label>
+        <button type="submit">SAVE</button>
+    </div>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registration Page</title>
+  <script>
+    function validateForm(event) {
+      event.preventDefault(); // Stop form from submitting
+      let error = document.getElementById("error");
+      error.textContent = "";
+
+      // Validate Name
+      let name = document.getElementById("name").value.trim();
+      if (name === "") {
+        error.textContent = "Please enter your name.";
+        return;
+      }
+      if (!/^[a-zA-Z]/.test(name)) {
+        error.textContent = "Name must start with a letter.";
+        return;
+      }
+      if (!/^[a-zA-Z .-]+$/.test(name)) {
+        error.textContent = "Name can only contain letters, dot(.) or dash(-).";
+        return;
+      }
+      if (name.split(" ").length < 2) {
+        error.textContent = "Name must contain at least two words.";
+        return;
+      }
+
+      // Validate Email
+      let email = document.getElementById("email").value.trim();
+      if (email === "") {
+        error.textContent = "Please enter your email.";
+        return;
+      }
+      let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      if (!emailPattern.test(email)) {
+        error.textContent = "Please enter a valid email address.";
+        return;
+      }
+
+      // Validate Gender
+      let genders = document.getElementsByName("gender");
+      let genderSelected = false;
+      for (let g of genders) {
+        if (g.checked) {
+          genderSelected = true;
+          break;
+        }
+      }
+      if (!genderSelected) {
+        error.textContent = "Please select your gender.";
+        return;
+      }
+
+      // Validate Date of Birth
+      let dob = document.getElementById("dob").value;
+      if (!dob) {
+        error.textContent = "Please enter your date of birth.";
+        return;
+      }
+      let dobDate = new Date(dob);
+      let today = new Date();
+      if (dobDate >= today) {
+        error.textContent = "Date of birth must be in the past.";
+        return;
+      }
+      let age = today.getFullYear() - dobDate.getFullYear();
+      let m = today.getMonth() - dobDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < dobDate.getDate())) {
+        age--;
+      }
+      if (age < 18) {
+        error.textContent = "You must be at least 18 years old.";
+        return;
+      }
+
+      // Validate Degree
+      let degrees = document.getElementsByName("degree");
+      let degreeSelected = false;
+      for (let d of degrees) {
+        if (d.checked) {
+          degreeSelected = true;
+          break;
+        }
+      }
+      if (!degreeSelected) {
+        error.textContent = "Please select your degree.";
+        return;
+      }
+
+      // Validate Blood Group
+      let bloodGroup = document.getElementById("bloodGroup").value;
+      if (bloodGroup === "") {
+        error.textContent = "Please select your blood group.";
+        return;
+      }
+
+      // If everything is valid
+      alert("Registration successful!");
+    }
+  </script>
+</head>
+<body>
+  <h1>Registration Form</h1>
+  <form onsubmit="validateForm(event)">
+    <p>
+      Name: <br>
+      <input type="text" id="name" placeholder="Enter full name">
+    </p>
+
+    <p>
+      Email: <br>
+      <input type="text" id="email" placeholder="sample@example.com">
+    </p>
+
+    <p>
+      Gender: <br>
+      <label><input type="radio" name="gender" value="Male"> Male</label>
+      <label><input type="radio" name="gender" value="Female"> Female</label>
+      <label><input type="radio" name="gender" value="Other"> Other</label>
+    </p>
+
+    <p>
+      Date of Birth: <br>
+      <input type="date" id="dob">
+    </p>
+
+    <p>
+      Degree: <br>
+      <label><input type="radio" name="degree" value="SSC"> SSC</label>
+      <label><input type="radio" name="degree" value="HSC"> HSC</label>
+      <label><input type="radio" name="degree" value="BSC"> BSC</label>
+    </p>
+
+    <p>
+      Blood Group: <br>
+      <select id="bloodGroup">
+        <option value="">--Select Blood Group--</option>
+        <option value="A+">A+</option>
+        <option value="A-">A−</option>
+        <option value="B+">B+</option>
+        <option value="B-">B−</option>
+        <option value="AB+">AB+</option>
+        <option value="AB-">AB−</option>
+        <option value="O+">O+</option>
+        <option value="O-">O−</option>
+      </select>
+    </p>
+
+    <button type="submit">Register</button>
+    <p id="error" style="color: red;"></p>
+  </form>
+</body>
+</html>
